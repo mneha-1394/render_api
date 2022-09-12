@@ -26,8 +26,9 @@ class _ThirdPageState extends State<ThirdPage> {
     setState(() {
       isLoading = true;
     });
-     var  uri =Uri.parse('https://randomuser.me/api/');
+   var  uri =Uri.parse('https://randomuser.me/api/');
        var response=await http.get(uri);
+    // print(response.body);
     if(response.statusCode == 200){
       var items = json.decode(response.body)['results'];
       setState(() {
@@ -69,17 +70,7 @@ class _ThirdPageState extends State<ThirdPage> {
         child: ListTile(
           title: Row(
             children: <Widget>[
-              Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(60/2),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(profileUrl)
-                  )
-                ),
-              ),
+            CircleAvatar(child: Image.network(profileUrl,fit: BoxFit.scaleDown,)),
               const SizedBox(width: 20,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
